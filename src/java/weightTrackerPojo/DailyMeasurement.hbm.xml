@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 18, 2018 2:53:49 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="weightTrackerPojo.DailyMeasurement" table="daily_measurement" catalog="weighttrackerdatabase_d" optimistic-lock="version">
+        <id name="measurementId" type="java.lang.Integer">
+            <column name="Measurement_ID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="dailylog" class="weightTrackerPojo.Dailylog" fetch="select">
+            <column name="DailyLog_ID" />
+        </many-to-one>
+        <property name="measurementDate" type="date">
+            <column name="Measurement_Date" length="10" />
+        </property>
+        <property name="measurementShift" type="string">
+            <column name="Measurement_Shift" length="20" />
+        </property>
+        <property name="weightValue" type="java.lang.Double">
+            <column name="Weight_Value" precision="20" scale="0" />
+        </property>
+        <property name="waistSize" type="java.lang.Double">
+            <column name="Waist_Size" precision="20" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

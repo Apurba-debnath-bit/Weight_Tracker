@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 18, 2018 2:53:49 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="weightTrackerPojo.Course" table="course" catalog="weighttrackerdatabase_d" optimistic-lock="version">
+        <id name="courseId" type="java.lang.Integer">
+            <column name="Course_ID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="user" class="weightTrackerPojo.User" fetch="select">
+            <column name="User_ID" />
+        </many-to-one>
+        <property name="courseName" type="string">
+            <column name="Course_Name" length="20" />
+        </property>
+        <property name="courseStartDate" type="date">
+            <column name="Course_Start_Date" length="10" />
+        </property>
+        <property name="courseEndDate" type="date">
+            <column name="Course_End_Date" length="10" />
+        </property>
+        <property name="courseTrainerName" type="string">
+            <column name="Course_Trainer_Name" length="20" />
+        </property>
+        <property name="bmiIndex" type="java.lang.Double">
+            <column name="BMI_Index" precision="20" scale="0" />
+        </property>
+        <set name="dailylogs" table="dailylog" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Course_ID" />
+            </key>
+            <one-to-many class="weightTrackerPojo.Dailylog" />
+        </set>
+    </class>
+</hibernate-mapping>
