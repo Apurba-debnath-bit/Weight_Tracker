@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    
+
+    <body>
+
+        <ui:composition template="./MasterTemplate.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                <p:panelGrid columns="2">
+                        <f:facet name="header">Daily Report</f:facet>
+                <h:outputText value="Select User ID"/>
+                
+                      
+                
+                <p:selectOneMenu value="#{reportController.users.userId}">
+                    <f:selectItems value="#{userController.userCombo}"/>
+                 </p:selectOneMenu>
+                
+                
+                <f:facet name="footer">
+                    <h:commandButton value="Show Report" action="#{reportController.viewReport()}"/> 
+                </f:facet>
+                </p:panelGrid>  
+                </h:form>
+                <tab>
+                    <p:dataTable var="c" value="#{reportController.reports}">
+                    <p:column headerText="User ID">
+                        <h:outputText  value="#{c.userId}"/>
+                    </p:column>
+                    <p:column headerText="User Name">
+                        <h:outputText  value="#{c.userName}"/>
+                    </p:column>
+                    
+                    <p:column headerText="Course ID">
+                        <h:outputText  value="#{c.courseId}"/>
+                    </p:column>
+                    
+                    <p:column headerText="Course Name">
+                        <h:outputText  value="#{c.courseName}"/>
+                    </p:column>
+                    <p:column headerText="DailyLog ID">
+                        <h:outputText  value="#{c.dailylogId}"/>
+                    </p:column>
+                    <p:column headerText="DailyLog Date:">
+                        <h:outputText  value="#{c.dailylogdate}"/>
+                    </p:column>
+                    <p:column headerText="Activity level">
+                        <h:outputText  value="#{c.activity}"/>
+                    </p:column>
+                        
+                    
+                   
+                    <p:column headerText="Total Unit take(Per gram)">
+                        <h:outputText  value="#{c.totalUnitTake}"/>
+                    </p:column>
+                        
+                     <p:column headerText="Total Gain Calorie">
+                         <h:outputText  value="#{c.totalUnitTake*c.mealCalorie/c.mealUnit}"/>
+                    </p:column>
+                    
+                    
+                    <p:column headerText=" Total Unit Burn (Per min)">
+                      <h:outputText  value="#{c.totalUnitBurnt}"/>
+                    </p:column>
+                     <p:column headerText=" Total Calorie Burn (Per min)">
+                         <h:outputText  value="#{c.totalUnitBurnt*c.calorieBurnt/c.exerciseDuration}"/>
+                    </p:column>    
+                        
+                        
+                  <p:column headerText="Calorie deficiency">
+                      <h:outputText  value="#{c.totalUnitTake*c.mealCalorie/c.mealUnit-c.totalUnitBurnt*c.calorieBurnt/c.exerciseDuration} "/>
+                  </p:column>
+                    
+                    
+                </p:dataTable>
+                </tab>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
