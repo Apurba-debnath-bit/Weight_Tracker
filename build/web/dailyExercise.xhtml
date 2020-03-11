@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./MasterTemplate.xhtml">
+
+            <ui:define name="content">
+                 <h:form>
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">Daily Exercise From</f:facet> 
+                        <h:outputText value="Daily Exercise Id"/>
+                        <h:inputText value="#{exerciseDailyLogController.exerciseDailylog.exerciseDailyLogId}"/>
+                        
+                        <h:outputText value="Daily Log ID"/>
+                        <p:selectOneMenu value="#{exerciseDailyLogController.exerciseDailylog.dailylog.dailyLogId}">
+                            <f:selectItems value="#{dailyLogController.dailyLogCombo}"/>
+                        </p:selectOneMenu>
+                        
+                       
+                      <h:outputText value=" Select Exercise Type"/>
+                      <h:selectOneMenu value="#{exerciseDailyLogController.exerciseDailylog.exercise.exerciseId}">
+                            <f:selectItems value="#{exerciseDailyLogController.selectItemsExercise}"/>
+                        </h:selectOneMenu>
+                       
+                        
+                        <h:outputText value="Total Unit Burn (Per min)"/>
+                        <h:inputText value="#{exerciseDailyLogController.exerciseDailylog.totalUnitBurnt}"/>
+                        
+                        <f:facet name="footer">
+                            <h:commandButton value="New" action="#{exerciseDailyLogController.newExercisedailylog()}"/> 
+                            <h:commandButton value="Save" action="#{exerciseDailyLogController.save}"/> 
+                            <h:commandButton value="Find" action="#{exerciseDailyLogController.find}"/> 
+                            <h:commandButton value="Update" action="#{exerciseDailyLogController.update}"/> 
+                            <h:commandButton value="Delete" action="#{exerciseDailyLogController.delete}"/> 
+                            <h:commandButton value="Display" action="#{exerciseDailyLogController.display}"/> 
+                          
+                        </f:facet>
+                    </p:panelGrid>
+                       <h:outputText value="#{exerciseDailyLogController.msg}"/>
+                </h:form>
+                <br/>
+                <p:dataTable var="de" value="#{exerciseDailyLogController.exerciseDailylogs}">
+                    
+                    <p:column headerText="Daily Exercise Id">
+                        <h:outputText  value="#{de.exerciseDailyLogId}"/>
+                    </p:column>
+                    <p:column headerText="Log Id">
+                        <h:outputText  value="#{de.dailylog.dailyLogId}"/>
+                    </p:column>
+                    <p:column headerText="Exercise Name">
+                        <h:outputText  value="#{de.exercise.exerciseType}"/>
+                    </p:column>
+                    <p:column headerText="Total Unit Burn(Per min)">
+                        <h:outputText  value="#{de.totalUnitBurnt}"/>
+                    </p:column>
+                   
+                </p:dataTable>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./MasterTemplate.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <f:facet name="header">User Registration form</f:facet>
+                        
+                        <h:outputText value="User Id"/>
+                        <h:inputText value="#{w_UserController.user.userId}"/>
+                        <h:outputText value="User Name"/>
+                        <h:inputText value="#{w_UserController.user.userName}"/>
+                        <h:outputText value="Gender"/>
+                        <h:inputText value="#{w_UserController.user.userGender}"/>
+                        <h:outputText value="Age"/>
+                        <h:inputText value="#{w_UserController.user.userAge}"/>
+                        <h:outputText value="Height"/>
+                        <h:inputText value="#{w_UserController.user.userHeight}"/>
+                        <h:outputText value="Weight"/>
+                        <h:inputText value="#{w_UserController.user.userWeight}"/>
+                        <h:outputText value="Body Mess Index"/>
+                        <h:inputText value="#{w_UserController.user.bmiIndex}"/>
+
+                         <f:facet name="footer">
+                            
+                             <h:commandButton value="New" action="#{w_UserController.newUser()}"/>
+                             <h:commandButton value="Save" action="#{w_UserController.save()}"/>
+                             <h:commandButton value="Find" action="#{w_UserController.find()}"/>
+                             <h:commandButton value="Edit" action="#{w_UserController.update()}"/>
+                             <h:commandButton value="Delete" action="#{w_UserController.delete()}"/>
+                             <h:commandButton value="Display" action="#{w_UserController.display()}"/>
+                                             
+                                             
+                            
+                            
+                        </f:facet>
+                    </h:panelGrid> 
+                    
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

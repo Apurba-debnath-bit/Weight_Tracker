@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 18, 2018 2:53:49 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="weightTrackerPojo.Exercisedailylog" table="exercisedailylog" catalog="weighttrackerdatabase_d" optimistic-lock="version">
+        <id name="exerciseDailyLogId" type="java.lang.Integer">
+            <column name="ExerciseDailyLog_ID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="dailylog" class="weightTrackerPojo.Dailylog" fetch="select">
+            <column name="DailyLog_ID" />
+        </many-to-one>
+        <many-to-one name="exercise" class="weightTrackerPojo.Exercise" fetch="select">
+            <column name="Exercise_ID" />
+        </many-to-one>
+        <property name="totalUnitBurnt" type="java.lang.Integer">
+            <column name="Total_Unit_Burnt" />
+        </property>
+    </class>
+</hibernate-mapping>

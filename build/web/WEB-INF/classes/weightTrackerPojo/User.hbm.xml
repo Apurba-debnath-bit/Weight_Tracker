@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 18, 2018 2:53:49 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="weightTrackerPojo.User" table="user" catalog="weighttrackerdatabase_d" 
+           optimistic-lock="version">
+        <id name="userId" type="java.lang.Integer">
+            <column name="User_ID" />
+            <generator class="identity" />
+        </id>
+        <property name="userName" type="string">
+            <column name="User_Name" length="20" />
+        </property>
+        <property name="userAge" type="java.lang.Integer">
+            <column name="User_Age" />
+        </property>
+        <property name="userGender" type="string">
+            <column name="User_Gender" length="20" />
+        </property>
+        <property name="userHeight" type="java.lang.Double">
+            <column name="User_Height" precision="20" scale="0" />
+        </property>
+        <property name="userWeight" type="java.lang.Double">
+            <column name="User_Weight" precision="20" scale="0" />
+        </property>
+        <property name="bmiIndex" type="java.lang.Double">
+            <column name="BMI_Index" precision="20" scale="0" />
+        </property>
+        <property name="userWaistSize" type="java.lang.Double">
+            <column name="User_WaistSize" precision="20" scale="0" />
+        </property>
+        <set name="courses" table="course" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="User_ID" />
+            </key>
+            <one-to-many class="weightTrackerPojo.Course" />
+        </set>
+    </class>
+</hibernate-mapping>

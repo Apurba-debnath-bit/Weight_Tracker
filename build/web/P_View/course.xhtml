@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./MasterTemplate.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">Course Registration From</f:facet> 
+                        <h:outputText value="Course Id"/>
+                        <h:inputText value="#{courseController.course.courseId}"/>
+                        <h:outputText value="Course Name"/>
+                        <h:inputText value="#{courseController.course.courseName}"/>
+                        
+                        
+                         <h:outputText value="user"/>
+                        <h:selectOneMenu value="#{courseController.course.user.userId}">
+                            <f:selectItems value="#{courseController.selectItemsUser}"/>
+                        </h:selectOneMenu>
+                        
+                        
+                        <h:outputText value="Course Start Date"/>
+                        <p:calendar pattern="yyyy-MM-dd"  value="#{courseController.course.courseStartDate}"/>
+                        <h:outputText value="Course End Date"/>
+                        <p:calendar pattern="yyyy-MM-dd"  value="#{courseController.course.courseEndDate}"/>
+                        <h:outputText value="Course BMI"/>
+                        <h:inputText value="#{courseController.course.user.bmiIndex}" readonly="true"/>
+                        <h:outputText value="Course Trainer Name"/>
+                        <h:inputText value="#{courseController.course.courseTrainerName}"/>
+                        
+                        
+                        <f:facet name="footer">
+                            <h:commandButton value="New" action="#{courseController.clear()}"/> 
+                            <h:commandButton value="Save" action="#{courseController.save}"/> 
+                            <h:commandButton value="Find" action="#{courseController.find}"/> 
+                            <h:commandButton value="Update" action="#{courseController.update}"/> 
+                            <h:commandButton value="Delete" action="#{courseController.delete}"/> 
+                            <h:commandButton value="Display" action="#{courseController.display}"/> 
+                          
+                        </f:facet>
+                    </p:panelGrid>
+                     <h:outputText value="#{courseController.msg}"/>
+                </h:form>
+                <br/>
+                <p:dataTable var="c" value="#{courseController.courses}">
+                    <p:column headerText="Course Id">
+                        <h:outputText  value="#{c.courseId}"/>
+                    </p:column>
+                    <p:column headerText="Course Name">
+                        <h:outputText  value="#{c.courseName}"/>
+                    </p:column>
+                    
+                    <p:column headerText="User Name">
+                        <h:outputText  value="#{c.user.userName}"/>
+                    </p:column>
+                    
+                    <p:column headerText="Course Start Date">
+                        <h:outputText  value="#{c.courseStartDate}"/>
+                    </p:column>
+                    <p:column headerText="Course End Date">
+                        <h:outputText  value="#{c.courseEndDate}"/>
+                    </p:column>
+                    <p:column headerText="Course Trainer:">
+                        <h:outputText  value="#{c.courseTrainerName}"/>
+                    </p:column>
+                    <p:column headerText="Course BMI">
+                        <h:outputText  value="#{c.bmiIndex}"/>
+                    </p:column>
+                    
+                    
+                </p:dataTable>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

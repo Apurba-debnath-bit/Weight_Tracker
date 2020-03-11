@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./MasterTemplate.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">Periodic Report</f:facet>
+                        <h:outputText value="Select User"/>
+                        <h:selectOneMenu value="#{reportChartController.user.userId}" >
+                            <f:selectItems value="#{reportChartController.userCombo}"/>
+                        </h:selectOneMenu>
+                        <h:outputText value="select date"/>
+                        <p:calendar />
+                        <f:facet name="footer">
+                            <h:commandButton value="Report" action="#{reportChartController.createDateModel}"/>
+                            <h:commandButton value="New" action="#{reportChartController.newReport}"/>
+                        </f:facet> 
+                    </p:panelGrid> 
+                 
+                </h:form>
+               <br/>
+                <p:dataTable var="report" value="#{reportChartController.newreports}">
+                    <p:column headerText="User Id">
+                        <h:outputText value="#{report.userId}"/>
+                    </p:column>
+                    <p:column headerText="User Name">
+                        <h:outputText value="#{report.userName}"/>
+                    </p:column>
+                    <p:column headerText="Dailylog Date">
+                        <h:outputText value="#{report.dailylogdate}"/>
+                    </p:column>
+                    <p:column headerText="Total Gain calorie">
+                        <h:outputText value="#{report.totalGainCalorie}"/>
+                    </p:column>
+                    <p:column headerText="Total Burn Calorie">
+                        <h:outputText value="#{report.totalBurnCalorie}"/>
+                    </p:column>
+                </p:dataTable>
+                 
+                <p:chart type="line" model="#{reportChartController.dateModel}" style="height: 400px"/>
+                             
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
